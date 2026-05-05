@@ -12,12 +12,11 @@ from services.vision.exercise_video_processor import VideoProcessorClass
 from services.tracking.metrics import sync_metrics_update
 from services.persistence.exercise_repository import get_users_exercises
 from groq import Groq
-from dotenv import load_dotenv
 from services.coaching.llm import LLMCoach
 from services.coaching.tts import TextToSpeech
 from services.coaching.voice_pipeline import VoicePipeline, autoplay_audio
 
-load_dotenv()
+  
 def main():
     st.set_page_config(
         page_icon="🏋️‍♀️",
@@ -175,9 +174,6 @@ def main():
     if st.session_state.get("coach_feedback"):
         st.markdown("")
         st.success(f"🤖 **Coach:** {st.session_state.coach_feedback}")
-
-    if st.session_state.get("coach_status"):
-        st.caption(st.session_state.coach_status)
 
     if not workout_started:
         st.markdown(
