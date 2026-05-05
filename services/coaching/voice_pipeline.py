@@ -8,6 +8,24 @@ class VoicePipeline:
         self.tts = tts
         self.last_spoken_at = 0
 
+    def _fallback_feedback(self, event, issue):
+        if event == "workout_started":
+            return "Let's begin. Move with control and keep your form clean."
+
+        if event == "set_completed":
+            return "Set complete. Breathe, reset, and get ready for the next one."
+
+        if event == "workout_completed":
+            return "Workout complete. Great effort today."
+
+        if event == "no_pose_detected":
+            return "Step fully into the camera frame so your form can be tracked."
+
+        if issue:
+            return issue
+
+        return "Keep going. Stay controlled and focus on clean reps."
+
     def _find_form_issue(self, exercise, metrics):
         if "issue" in metrics:
             return metrics["issue"]
@@ -77,8 +95,18 @@ class VoicePipeline:
             if now - self.last_spoken_at < 5:
                 return None
             
-        text = self.llm.give_feedback(event, issue)
-        voice = self.tts.speak(text)
+        try:
+            text = self.llm.give_feedback(event, issue)
+            st.session_state.coach_status = ""
+        except Exception:
+            text = self._fallback_feedback(event, issue)
+            st.session_state.coach_status = "AI coaching is temporarily offline. Showing fallback guidance."
+
+        try:
+            voice = self.tts.speak(text)
+        except Exception:
+            voice = None
+            st.session_state.coach_status = "Voice audio is temporarily offline. Showing text coaching."
 
         self.last_spoken_at = now
 
