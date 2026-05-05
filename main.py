@@ -176,6 +176,9 @@ def main():
         st.markdown("")
         st.success(f"🤖 **Coach:** {st.session_state.coach_feedback}")
 
+    if st.session_state.get("coach_status"):
+        st.caption(st.session_state.coach_status)
+
     if not workout_started:
         st.markdown(
             """

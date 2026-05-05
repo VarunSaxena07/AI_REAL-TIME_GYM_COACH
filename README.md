@@ -71,6 +71,14 @@ This project includes `packages.txt` for Linux runtime libraries needed by OpenC
 
 The requirements are set up for Streamlit Cloud's Python 3.14 environment. If you deploy with an older Python version, recreate the environment and reinstall dependencies from `requirements.txt`.
 
+Add your Groq key in the app's Streamlit secrets:
+
+```toml
+GROQ_API_KEY = "your_groq_api_key_here"
+```
+
+If Groq or text-to-speech is temporarily unavailable, the app will continue running and show text coaching fallback messages.
+
 ## Notes
 
 - `data.db` is created locally for user and exercise history and is ignored by Git.
