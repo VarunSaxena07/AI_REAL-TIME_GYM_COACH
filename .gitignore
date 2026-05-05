@@ -1,0 +1,50 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+.venv312/
+venv/
+env/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+.streamlit/secrets.toml
+
+# Local databases and runtime state
+*.db
+*.sqlite
+*.sqlite3
+
+# Temporary files and logs
+.tmp/
+tmp/
+temp/
+*.log
+
+# Build and packaging outputs
+build/
+dist/
+*.egg-info/
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Generated media artifacts
+*.wav
+*.mp3
+*.mp4
+*.avi
+*.mov
