@@ -67,9 +67,9 @@ Then open the local Streamlit URL in your browser, enter a username, choose an e
 
 ## Deploy on Streamlit Community Cloud
 
-Use Python 3.12 for deployment. This project pins `mediapipe==0.10.14`, and that release publishes wheels for Python 3.12 but not Python 3.14. If Streamlit Cloud builds the app with Python 3.14, dependency installation will fail with a "no wheels with a matching Python ABI tag" error.
+This project includes `packages.txt` for Linux runtime libraries needed by OpenCV/MediaPipe on Streamlit Community Cloud.
 
-In Streamlit Community Cloud, set the Python version from the app's Advanced settings when deploying. If the app is already deployed with the wrong Python version, delete and redeploy it with Python 3.12 selected.
+The requirements are set up for Streamlit Cloud's Python 3.14 environment. If you deploy with an older Python version, recreate the environment and reinstall dependencies from `requirements.txt`.
 
 ## Notes
 
