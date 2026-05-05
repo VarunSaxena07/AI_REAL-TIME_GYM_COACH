@@ -65,6 +65,12 @@ streamlit run main.py
 
 Then open the local Streamlit URL in your browser, enter a username, choose an exercise plan in the sidebar, and start the workout to enable camera-based tracking.
 
+## Deploy on Streamlit Community Cloud
+
+Use Python 3.12 for deployment. This project pins `mediapipe==0.10.14`, and that release publishes wheels for Python 3.12 but not Python 3.14. If Streamlit Cloud builds the app with Python 3.14, dependency installation will fail with a "no wheels with a matching Python ABI tag" error.
+
+In Streamlit Community Cloud, set the Python version from the app's Advanced settings when deploying. If the app is already deployed with the wrong Python version, delete and redeploy it with Python 3.12 selected.
+
 ## Notes
 
 - `data.db` is created locally for user and exercise history and is ignored by Git.
